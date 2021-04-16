@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/cardView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/linear0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/logosites"
+                android:layout_gravity="center"
+                />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/cardView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView3">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView2"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/white"
+                android:elevation="6dp"
+                app:cardCornerRadius="10dp"
+                >
+
+                <TextView
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:text="Directorio"
+                    android:textColor="@color/navy_blue"
+                    android:autoSizeMaxTextSize="35sp"
+                    android:autoSizeMinTextSize="25sp"
+                    android:textSize="35sp"
+                    android:textAlignment="center"/>
+
+                <ImageButton
+                    android:id="@+id/arrow0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/ic_arrow_up" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="400sp"
+                android:visibility="visible"
+               >
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/etecsa_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/infor_btn"
+                    app:layout_constraintEnd_toStartOf="@+id/culture_btn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_bg2">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="40dp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_baseline_sim_card_24" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:text="Redes y Telecomunicaciones"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/culture_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/edu_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/etecsa_btn"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_bg3"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="30dp"
+                            android:paddingStart="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="25dp"
+                            android:src="@drawable/dance" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:text="Culturales y Entretenimiento"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/infor_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/edu_btn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/etecsa_btn">
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_bg4"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:padding="20dp"
+                            android:src="@drawable/news" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="10dp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:text="Informativos"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="22sp" />
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/edu_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/infor_btn"
+                    app:layout_constraintTop_toBottomOf="@+id/culture_btn">
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient_bg5"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="20dp"
+                            android:paddingStart="25dp"
+                            android:paddingEnd="25dp"
+                            android:paddingBottom="30dp"
+                            android:src="@drawable/inved" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center|bottom"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/googlesans_medium"
+                            android:text="Educativos / Investigativos"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="20sp" />
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView4"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
+            android:elevation="6dp"
+            android:visibility="visible"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/grid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/googlesans_bold"
+                android:text="Acceso Rápido"
+                android:textColor="@color/navy_blue"
+                android:textSize="35sp" />
+
+            <ImageButton
+                android:id="@+id/arrow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_arrow_up" />
+        </androidx.cardview.widget.CardView>
+
+        <GridLayout
+            android:id="@id/grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/curved_btn3"
+            android:visibility="visible"
+            android:columnCount="5"
+            android:rowCount="2"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardView10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+           <Button
+               android:id="@+id/item0"
+               android:layout_height="80sp"
+               android:layout_width="80sp"
+               android:background="@drawable/curved_button0"
+               android:layout_columnWeight="1"
+               android:layout_margin="5sp"
+               android:text="+"
+               app:icon="@drawable/ic_baseline_add_24"
+               app:iconTint="@color/black"
+               android:textSize="40sp"
+               android:textColor="@color/black"
+               />
+            <Button
+                android:id="@+id/item1"
+                android:layout_height="80sp"
+                android:layout_width="80sp"
+                android:background="@drawable/curved_button0"
+                android:layout_columnWeight="1"
+                android:layout_margin="5sp"
+                android:text="+"
+                android:textSize="40sp"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:id="@+id/item2"
+                android:layout_height="80sp"
+                android:layout_width="80sp"
+                android:background="@drawable/curved_button0"
+                android:layout_columnWeight="1"
+                android:layout_margin="5sp"
+                android:text="+"
+                android:textSize="40sp"
+                android:textColor="@color/black"
+                />
+            <Button
+                android:id="@+id/item3"
+                android:layout_height="80sp"
+                android:layout_width="80sp"
+                android:background="@drawable/curved_button0"
+                android:layout_columnWeight="1"
+                android:layout_margin="5sp"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                />
+
+
+        </GridLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView10"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
+            android:elevation="6dp"
+            android:visibility="visible"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toTopOf="@id/scroller"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/grid">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/googlesans_bold"
+                android:text="Buscador"
+                android:textColor="@color/navy_blue"
+                android:textSize="35sp" />
+
+            <ImageButton
+                android:id="@+id/arrow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_arrow_up" />
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:id="@+id/scroller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:visibility="visible"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+
+            app:layout_constraintBottom_toTopOf="@id/cardView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView10"
+            >
+            <SearchView
+                android:id="@+id/searcher"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                />
+            <ListView
+                android:id="@+id/search_list"
+                android:layout_width="match_parent"
+                android:layout_height="300sp"
+                android:nestedScrollingEnabled="true"
+                />
+<!--            <ScrollView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                >-->
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    />-->
+<!--            </ScrollView>-->
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/white"
+            android:elevation="6dp"
+            app:cardCornerRadius="10dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scroller">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/googlesans_bold"
+                android:text="Contacto"
+                android:textColor="@color/navy_blue"
+                android:textSize="35sp" />
+
+            <ImageButton
+                android:id="@+id/arrow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/ic_arrow_down" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/contact_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/curved_btn4"
+
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/googlesans_medium"
+                android:justificationMode="inter_word"
+                android:text="Esta herramienta ha sido desarrollada por:"
+                android:textAlignment="center"
+                android:textColor="@color/navy_blue"
+                android:textSize="25sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150sp"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/mahologo2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/googlesans_medium"
+                android:justificationMode="inter_word"
+                android:text="@string/petition"
+                android:textAlignment="center"
+                android:textColor="@color/navy_blue"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="50dp"
+                android:fontFamily="@font/googlesans_medium"
+                android:justificationMode="inter_word"
+                android:text="Puede escribirnos a las siguientes direcciones:"
+                android:textAlignment="center"
+                android:textColor="@color/navy_blue"
+                android:textSize="18sp" />
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp">
+
+                <Button
+                    android:id="@+id/contact0"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_gravity="start|top"
+                    android:layout_marginStart="30sp"
+                    android:background="@drawable/ic_telegram_white" />
+
+                <Button
+                    android:id="@+id/contact1"
+                    android:layout_width="50sp"
+                    android:layout_height="35sp"
+                    android:layout_gravity="center|top"
+                    android:layout_marginTop="8sp"
+                    android:background="@drawable/ic_mailblack" />
+
+                <Button
+                    android:id="@+id/contact2"
+                    android:layout_width="50sp"
+                    android:layout_height="50sp"
+                    android:layout_gravity="end|top"
+                    android:layout_marginEnd="30sp"
+                    android:background="@drawable/ic_telegram_dark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|bottom"
+                    android:layout_marginTop="50sp"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:text="Telegram Dev"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:layout_marginTop="50sp"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:text="Correo"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_marginTop="50sp"
+                    android:fontFamily="@font/googlesans_bold"
+                    android:text="Telegram Oficial"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</LinearLayout>
+
