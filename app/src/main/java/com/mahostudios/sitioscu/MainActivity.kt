@@ -1,5 +1,6 @@
 package com.mahostudios.sitioscu
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.TransitionManager
+import android.util.Log
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -22,11 +24,17 @@ import android.widget.AdapterView.OnItemClickListener
 import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.marginBottom
 import java.lang.Exception
 import java.util.*
 import kotlin.concurrent.thread
 import cu.uci.apklischeckpayment.Verify
+import cu.uci.apklisupdate.ApklisUpdate
+import cu.uci.apklisupdate.UpdateCallback
+import cu.uci.apklisupdate.model.AppUpdateInfo
+import cu.uci.apklisupdate.view.ApklisUpdateDialog
+import cu.uci.apklisupdate.view.ApklisUpdateFragment
 
 class MainActivity : AppCompatActivity() {
     var cont : Int = 0
@@ -43,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        CheckUpdate()
         checkPaid()
         MainButtons()
         Arrows()
@@ -338,12 +347,21 @@ class MainActivity : AppCompatActivity() {
     
     private fun checkPaid() : Boolean{
         val response = Verify.isPurchased(this, "${applicationContext.packageName}")
-
-//        if(checkApklis())Toast.makeText(this, "APKLIS instalado", Toast.LENGTH_SHORT).show()
+        val res = Verify.Companion.isPurchased(this, "${applicationContext.packageName}")
+        if(checkApklis())
+        else{
+            val diagB = AlertDialog.Builder(this)
+                    .setTitle("AVISO")
+                    .setMessage("Apklis no se encuentra instalado. Por favor descargue e instale la app para evitar errores con la compra.")
+                    .setNeutralButton("Aceptar"){_,_->
+                    }
+            val d = diagB.create()
+            d.show()
+        }
 
         val user = response.second
         val ispaid = response.first
-
+//        Toast.makeText(this, ispaid.toString(), Toast.LENGTH_SHORT).show()
 //        if(user.equals(null)|| user.equals(""))
 
         //@TODO:Wildcard
@@ -360,6 +378,40 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
             return false
         }
+    }
+
+    fun CheckUpdate(){
+        ApklisUpdate.hasAppUpdate(this, callback = object : UpdateCallback {
+
+            override fun onNewUpdate(appUpdateInfo: AppUpdateInfo) {
+
+                //Start info alert dialog or do what you want.
+                ApklisUpdateDialog(
+                        this@MainActivity,
+                        appUpdateInfo,
+                        ContextCompat.getColor(
+                                this@MainActivity,
+                                R.color.blue_deep)
+                ).show()
+
+                //Start info fragment or do what you want.
+                supportFragmentManager.beginTransaction().add(
+                        R.id.container, ApklisUpdateFragment.newInstance(
+                        updateInfo = appUpdateInfo,
+                        actionsColor = ContextCompat.getColor(this@MainActivity, R.color.blue_deep)
+                )
+                ).commit()
+
+            }
+
+            override fun onOldUpdate(appUpdateInfo: AppUpdateInfo) {
+                Log.d("MainActivity", "onOldUpdate $appUpdateInfo")
+            }
+
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        })
     }
 
 

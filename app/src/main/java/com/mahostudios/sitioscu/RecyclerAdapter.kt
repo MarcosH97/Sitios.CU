@@ -74,10 +74,10 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
             }
             sharebtn.setOnClickListener{
                 val dialog = AlertDialog.Builder(context)
-                dialog.setTitle("Aviso")
-                dialog.setMessage("Desea abrir la página en otro navegador?")
-                dialog.setCancelable(false)
-                dialog.setPositiveButton("Si"){_,_->
+                .setTitle("Aviso")
+                .setMessage("Desea abrir la página en otro navegador?")
+                .setCancelable(false)
+                .setPositiveButton("Si"){_,_->
                     myInterface.shareLink(getLink(itemTitle.text.toString()))
                 }
                 dialog.setNegativeButton("No"){_,_->

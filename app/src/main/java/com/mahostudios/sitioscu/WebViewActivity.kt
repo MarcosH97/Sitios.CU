@@ -12,6 +12,7 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.Window
 import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
@@ -72,12 +73,20 @@ class WebViewActivity : AppCompatActivity() {
             }
         }
         webView.loadUrl(url)
-        webView.settings.javaScriptEnabled = true
-        webView.settings.useWideViewPort = true
-        webView.settings.loadWithOverviewMode = true
         webView.settings.setSupportZoom(true)
         webView.settings.builtInZoomControls = true
+        webView.settings.javaScriptEnabled = true
+        webView.settings.javaScriptCanOpenWindowsAutomatically = true
+        webView.settings.setSupportMultipleWindows(false)
+        webView.settings.loadWithOverviewMode = true
+        webView.settings.useWideViewPort = true
+        webView.settings.cacheMode = WebSettings.LOAD_DEFAULT
+        webView.settings.setAppCacheEnabled(true)
+        webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        webView.settings.allowUniversalAccessFromFileURLs = true
+        webView.settings.domStorageEnabled = true
 //        favicon.setImageBitmap(webView.favicon)
+
         ProgressBar()
 
     }
