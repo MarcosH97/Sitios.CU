@@ -391,16 +391,16 @@ class MainActivity : AppCompatActivity() {
                         appUpdateInfo,
                         ContextCompat.getColor(
                                 this@MainActivity,
-                                R.color.blue_deep)
+                                R.color.soft_gray)
                 ).show()
 
                 //Start info fragment or do what you want.
-                supportFragmentManager.beginTransaction().add(
-                        R.id.container, ApklisUpdateFragment.newInstance(
-                        updateInfo = appUpdateInfo,
-                        actionsColor = ContextCompat.getColor(this@MainActivity, R.color.blue_deep)
-                )
-                ).commit()
+//                supportFragmentManager.beginTransaction().add(
+//                        R.id.container, ApklisUpdateFragment.newInstance(
+//                        updateInfo = appUpdateInfo,
+//                        actionsColor = ContextCompat.getColor(this@MainActivity, R.color.blue_deep)
+//                )
+//                ).commit()
 
             }
 

@@ -27,7 +27,7 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
 
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: RecyclerAdapter
-    lateinit var top_text : TextView
+    lateinit var top_banner: ImageView
     lateinit var settings : SharedPreferences
     lateinit var dialog: Dialog
     lateinit var lay : LinearLayout
@@ -46,7 +46,10 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
 
         val bundle = intent.extras
         var cat : CharSequence? = ""
-        top_text = findViewById(R.id.top_text)
+
+        top_banner = findViewById(R.id.banner)
+
+
         try {
             cat = bundle!!.getCharSequence("category")
         }catch (e:NullPointerException){
@@ -66,22 +69,22 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         when(cat.toString()){
             "Redes y Telecomunicaciones" ->{
                 s = "ETECSA"
-                top_text.text = cat.toString()
+                top_banner.setBackgroundResource(R.drawable.netbanner)
                 lay.setBackgroundResource(R.drawable.gradient_bg2)
             }
             "Culturales_Entretenimiento" ->{
                 s = cat.toString()
-                top_text.text = "Culturales y Entretenimiento"
+                top_banner.setBackgroundResource(R.drawable.cultbanner)
                 lay.setBackgroundResource(R.drawable.gradient_bg3)
             }
             "Informativos" ->{
                 s = cat.toString()
-                top_text.text = s
+                top_banner.setBackgroundResource(R.drawable.infobanner)
                 lay.setBackgroundResource(R.drawable.gradient_bg4)
             }
             "Investigativos_Educativos" ->{
                 s = cat.toString()
-                top_text.text = "Investigativos/Educativos"
+                top_banner.setBackgroundResource(R.drawable.edubanner)
                 lay.setBackgroundResource(R.drawable.gradient_bg5)
             }
             else -> s = ""

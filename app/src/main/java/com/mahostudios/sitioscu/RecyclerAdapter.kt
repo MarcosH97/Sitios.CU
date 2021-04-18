@@ -111,7 +111,7 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
         return ViewHolder(v)
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        holder.setIsRecyclable(false)
         when(cat){
             "ETECSA" ->{
                 holder.img.setBackgroundResource(R.drawable.gradient_bg2)
