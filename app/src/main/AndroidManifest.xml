@@ -15,9 +15,9 @@
         android:usesCleartextTraffic="true"
         >
         <activity android:name=".ListActivity"
+            android:configChanges="uiMode"
             android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".WebViewActivity"
-            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".WebViewActivity"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="sensorPortrait">
             <intent-filter>

@@ -1,9 +1,11 @@
 package com.mahostudios.sitioscu
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.*
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.util.TypedValue
@@ -18,6 +20,7 @@ import androidx.constraintlayout.motion.widget.MotionScene
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import kotlin.coroutines.coroutineContext
 
 class RecyclerAdapter(private var context: Context, private var sites: List<Sitio>, private var cat: String):
@@ -26,7 +29,6 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
     inner class ViewHolder(item : View):RecyclerView.ViewHolder(item){
 
         var myInterface : MyInterface = context as MyInterface
-
         val webtn : ImageButton = item.findViewById(R.id.web_btn)
         val sharebtn : ImageButton = item.findViewById(R.id.share_btn)
         val costimg : ImageView = item.findViewById(R.id.cost_img)
@@ -37,7 +39,6 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
         val img : ImageView = item.findViewById(R.id.img)
         val itemTitle : TextView = item.findViewById(R.id.page_http)
         val itemDesc : TextView = item.findViewById(R.id.page_desc)
-
         init {
 //            itemView.setOnClickListener{ v : View ->
 //                val pos : Int = adapterPosition
@@ -54,54 +55,100 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
                 }
             }
             webtn.setOnClickListener{v : View ->
-                val dialog = AlertDialog.Builder(context)
-                dialog.setTitle("Aviso")
-                dialog.setMessage("Desea abrir esta página?")
-                dialog.setCancelable(false)
-                dialog.setPositiveButton("Si"){_,_->
-                    myInterface.onMethodCallback(getLink(itemTitle.text.toString()))
+//                val dialog = AlertDialog.Builder(context)
+//                dialog.setTitle("Aviso")
+//                dialog.setMessage("Desea abrir esta página?")
+//                dialog.setCancelable(false)
+//                dialog.setPositiveButton("Si"){_,_->
+//                    myInterface.onMethodCallback(getLink(itemTitle.text.toString()))
+//                }
+//                dialog.setNegativeButton("No"){_,_->
+//                }
+//                val diag = dialog.create()
+//                diag.show()
+//                diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.DKGRAY)
+//                diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.DKGRAY)
+                val dialog = Dialog(context)
+                dialog.setContentView(R.layout.loading_dialog)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                val showbtn : ImageButton = dialog.findViewById(R.id.cancel_btn)
+                val progbar : ProgressBar = dialog.findViewById(R.id.progress_circ)
+                var prog = 0
+                var cancelable = false
+                dialog.show()
+                Thread{
+                    while (prog < 100){
+                        prog += 1
+                        try {
+                            Thread.sleep(15)
+                            progbar.setProgress(prog)
+                            if (prog == 100){
+                                myInterface.onMethodCallback(getLink(itemTitle.text.toString()))
+                                dialog.dismiss()
+                            }
+                            if(cancelable){
+                                return@Thread
+                            }
+                        }catch (e : InterruptedException){
+                            e.printStackTrace()
+                        }
+                    }
+                }.start()
+
+                showbtn.setOnClickListener{
+                    cancelable = true
+                    dialog.dismiss()
                 }
-                dialog.setNegativeButton("No"){_,_->
-                }
-                val diag = dialog.create()
-                diag.show()
-                diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.DKGRAY)
-                diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.DKGRAY)
+
             }
 
             itemTitle.setOnClickListener{
                     myInterface.copyToClipboard(getLink(itemTitle.text.toString()))
             }
             sharebtn.setOnClickListener{
-                val dialog = AlertDialog.Builder(context)
-                .setTitle("Aviso")
-                .setMessage("Desea abrir la página en otro navegador?")
-                .setCancelable(false)
-                .setPositiveButton("Si"){_,_->
-                    myInterface.shareLink(getLink(itemTitle.text.toString()))
-                }
-                dialog.setNegativeButton("No"){_,_->
-
-                }
-                val diag = dialog.create()
-                diag.show()
-
-                val mode = context?.resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
-                when (mode) {
-                    Configuration.UI_MODE_NIGHT_YES -> {
-                        diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
-                        diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
+//                val dialog = AlertDialog.Builder(context)
+//                .setTitle("Aviso")
+//                .setMessage("Desea abrir la página en otro navegador?")
+//                .setCancelable(false)
+//                .setPositiveButton("Si"){_,_->
+//                    myInterface.shareLink(getLink(itemTitle.text.toString()))
+//                }
+//                dialog.setNegativeButton("No"){_,_->
+//
+//                }
+//                val diag = dialog.create()
+//                diag.show()
+                val dialog = Dialog(context)
+                dialog.setContentView(R.layout.loading_dialog)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                val showbtn : ImageButton = dialog.findViewById(R.id.cancel_btn)
+                val progbar : ProgressBar = dialog.findViewById(R.id.progress_circ)
+                var prog = 0
+                var cancelable = false
+                dialog.show()
+                Thread{
+                    while (prog < 100){
+                        prog += 1
+                        try {
+                            Thread.sleep(15)
+                            progbar.setProgress(prog)
+                            if (prog == 100){
+                                myInterface.shareLink(getLink(itemTitle.text.toString()))
+                                dialog.dismiss()
+                            }
+                            if(cancelable){
+                                return@Thread
+                            }
+                        }catch (e : InterruptedException){
+                            e.printStackTrace()
+                        }
                     }
-                    Configuration.UI_MODE_NIGHT_NO -> {
-                        diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.DKGRAY)
-                        diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.DKGRAY)
-                    }
-                    Configuration.UI_MODE_NIGHT_UNDEFINED -> {
-                        diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE)
-                        diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.WHITE)
-                    }
-                }
+                }.start()
 
+                showbtn.setOnClickListener{
+                    cancelable = true
+                    dialog.dismiss()
+                }
             }
 
         }

@@ -8,4 +8,11 @@
 
     </string>
     <string name="petition">Si conoce algún sitio web *.cu que no aparezca en el catálogo, se agradecería lo compartiera con nosotros para agregarlo en futuras actualizaciones.</string>
+    <array name="cathegories">
+        <item>Redes y \nTelecomunicaicones</item>
+        <item>Culturales y \n Entretenimiento</item>
+        <item>Informativos</item>
+        <item>Investigativos / \nEducativos</item>
+    </array>
+    <string name="test">"Redes y \n Telecomunicaicones"</string>
 </resources>

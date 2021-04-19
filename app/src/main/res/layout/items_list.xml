@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="nombre"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:autoSizeMinTextSize="20sp"
                 android:autoSizeMaxTextSize="40sp"
                 android:textColor="@color/white"

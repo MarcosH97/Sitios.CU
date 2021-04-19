@@ -2,6 +2,7 @@ package com.mahostudios.sitioscu
 
 import android.app.Dialog
 import android.content.*
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
@@ -22,8 +23,10 @@ import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
 import java.lang.Exception
 import java.lang.NullPointerException
+import kotlin.random.Random
 
 class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
+
 
     lateinit var recyclerView: RecyclerView
     lateinit var adapter: RecyclerAdapter
@@ -31,8 +34,10 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
     lateinit var settings : SharedPreferences
     lateinit var dialog: Dialog
     lateinit var lay : LinearLayout
-
+    lateinit var banner_title : TextView
+    var darkmode : Boolean = false
     val PREF_NAME = "hide"
+
 
     val lista = mutableListOf<Sitio>()
     lateinit var sitio : Sitio
@@ -40,10 +45,33 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-
+        darkmode = getDarkMode()
         lay = findViewById(R.id.linear1)
         FadeIn()
+        Start()
+        val randomval = Random.nextInt(1, 5)
+        if(randomval == 1 && !settings.getBoolean("rate", false)){
+            rateApp()
+        }
 
+    }
+
+    override fun onNightModeChanged(mode: Int) {
+        Start()
+        super.onNightModeChanged(mode)
+    }
+
+    override fun onRestart() {
+        Start()
+        super.onRestart()
+    }
+    override fun onBackPressed() {
+        val intent = Intent(this@ListActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    fun Start(){
         val bundle = intent.extras
         var cat : CharSequence? = ""
 
@@ -55,10 +83,11 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         }catch (e:NullPointerException){
             Toast.makeText(this, "Name not Found", Toast.LENGTH_SHORT).show()
         }
-        val lay = findViewById<RelativeLayout>(R.id.layout)
+        val lay = findViewById<RelativeLayout>(R.id.layout, )
         val s : String
 
         settings = getSharedPreferences("hide", MODE_PRIVATE)
+        settings = getSharedPreferences("rate", MODE_PRIVATE)
 
         dialog = Dialog(this)
 
@@ -66,39 +95,45 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         if(!settings.getBoolean("hide", false))
             showLegend0()
 
+        banner_title = findViewById(R.id.banner_title)
+
         when(cat.toString()){
             "Redes y Telecomunicaciones" ->{
                 s = "ETECSA"
-                top_banner.setBackgroundResource(R.drawable.netbanner)
-                lay.setBackgroundResource(R.drawable.gradient_bg2)
+                banner_title.text = "Redes y \nTelecomunicaicones"
+                top_banner.setBackgroundResource(R.drawable.ic_netbanner)
+                if(darkmode)lay.setBackgroundResource(R.drawable.netbgblack)
+                else lay.setBackgroundResource(R.drawable.netbackwhite)
+
             }
             "Culturales_Entretenimiento" ->{
                 s = cat.toString()
-                top_banner.setBackgroundResource(R.drawable.cultbanner)
-                lay.setBackgroundResource(R.drawable.gradient_bg3)
+                banner_title.text = "Culturales y \nEntretenimiento"
+                top_banner.setBackgroundResource(R.drawable.ic_cultbanner)
+                if(darkmode)lay.setBackgroundResource(R.drawable.cultbgblack)
+                else lay.setBackgroundResource(R.drawable.cultbglight)
             }
             "Informativos" ->{
                 s = cat.toString()
-                top_banner.setBackgroundResource(R.drawable.infobanner)
-                lay.setBackgroundResource(R.drawable.gradient_bg4)
+                banner_title.text = "Informativos"
+                top_banner.setBackgroundResource(R.drawable.ic_infobanner)
+                if(darkmode)lay.setBackgroundResource(R.drawable.infobgblack)
+                else lay.setBackgroundResource(R.drawable.infobglight)
             }
             "Investigativos_Educativos" ->{
                 s = cat.toString()
-                top_banner.setBackgroundResource(R.drawable.edubanner)
-                lay.setBackgroundResource(R.drawable.gradient_bg5)
+                banner_title.text = "Investigativos /\nEducativos"
+                top_banner.setBackgroundResource(R.drawable.ic_edubanner)
+                if(darkmode)lay.setBackgroundResource(R.drawable.edubgblack)
+                else lay.setBackgroundResource(R.drawable.edubglight)
             }
             else -> s = ""
         }
         setupDB(s)
         recyclerView = findViewById(R.id.recycler_v)
         setRecycler(s)
+    }
 
-    }
-    override fun onBackPressed() {
-        val intent = Intent(this@ListActivity, MainActivity::class.java)
-        startActivity(intent)
-        finish()
-    }
     fun FadeIn() {
         val set = AnimationSet(true)
         val fadein: Animation = AlphaAnimation(0.0f, 1.0f)
@@ -141,23 +176,9 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         recyclerView.adapter = adapter
     }
 
-    fun showLegend(){
-        val inflater = layoutInflater
-        val inflate_view = inflater.inflate(R.layout.dialog_layout, null)
-        val alertDialog = AlertDialog.Builder(this)
-            alertDialog.setView(inflate_view)
-
-                    .setPositiveButton("Ok") { _, _ ->
-                        var checkBox : CheckBox = findViewById(R.id.checkbox_side)
-                        if (checkBox.isChecked) {
-                            val ed: SharedPreferences.Editor = settings.edit()
-                            ed.putBoolean("hide", false)
-                            ed.apply()
-                        }
-                        closeContextMenu()
-                    }
-                    .create()
-                    .show()
+    fun getDarkMode():Boolean{
+        val current = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return current == Configuration.UI_MODE_NIGHT_YES
     }
 
     fun showLegend0(){
@@ -169,6 +190,29 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
             val ed : SharedPreferences.Editor = settings.edit()
             ed.putBoolean("hide", true)
             ed.commit()
+            dialog.dismiss()
+        }
+    }
+    fun rateApp(){
+        dialog.setContentView(R.layout.rate_dialog)
+        dialog.show()
+        val go : Button = dialog.findViewById(R.id.go_btn)
+        val off : Button = dialog.findViewById(R.id.off_btn)
+        val later : Button = dialog.findViewById(R.id.later_btn)
+
+        go.setOnClickListener{
+            val ed : SharedPreferences.Editor = settings.edit()
+            ed.putBoolean("rate", true)
+            ed.commit()
+            dialog.dismiss()
+        }
+        off.setOnClickListener{
+            val ed : SharedPreferences.Editor = settings.edit()
+            ed.putBoolean("rate", true)
+            ed.commit()
+            dialog.dismiss()
+        }
+        later.setOnClickListener{
             dialog.dismiss()
         }
     }

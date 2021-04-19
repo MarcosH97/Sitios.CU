@@ -16,7 +16,6 @@ class DBHelper(val context: Context)
         val DB_VERSION : Int = 8
         val DB_NAME : String = "directory0.db"
         var i: Int = 0
-
     }
     val database : SQLiteDatabase
     init {

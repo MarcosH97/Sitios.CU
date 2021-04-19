@@ -2,10 +2,7 @@ package com.mahostudios.sitioscu
 
 import android.app.AlertDialog
 import android.app.Dialog
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.*
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Debug
 import android.transition.AutoTransition
 import android.transition.TransitionManager
 import android.util.Log
@@ -39,28 +37,41 @@ import cu.uci.apklisupdate.view.ApklisUpdateFragment
 class MainActivity : AppCompatActivity() {
     var cont : Int = 0
     private val bundle : Bundle = Bundle()
-
+    private lateinit var preferences : SharedPreferences
     lateinit var searchView: SearchView
     lateinit var listView: ListView
     lateinit var sitio: Sitio2
     lateinit var url : String
     val lista = mutableListOf<Sitio2>()
+    private val PREF_NAME = "firstime"
 
+    override fun onResume() {
+        try {
+            if(!BuildConfig.DEBUG){
+                checkPaid()
+            }
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
 
+        super.onResume()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        preferences = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
 
-        CheckUpdate()
-        checkPaid()
+//        Toast.makeText(this, BuildConfig.DEBUG.toString(), Toast.LENGTH_SHORT ).show()
+
+        if(!BuildConfig.DEBUG){
+            checkPaid()
+        }
+
         MainButtons()
         Arrows()
         AddQAccess()
         SearchBar()
         About()
-
-
-
     }
 
     fun changeToDir(c :Context,name: String){
@@ -105,10 +116,10 @@ class MainActivity : AppCompatActivity() {
 
     //Los 4 botones del catalogo
     fun MainButtons(){
-        val c1 : CardView = findViewById(R.id.etecsa_btn)
-        val c2 : CardView = findViewById(R.id.culture_btn)
-        val c3 : CardView = findViewById(R.id.infor_btn)
-        val c4 : CardView = findViewById(R.id.edu_btn)
+        val c1 : ImageButton = findViewById(R.id.etecsa_btn)
+        val c2 : ImageButton = findViewById(R.id.culture_btn)
+        val c3 : ImageButton = findViewById(R.id.infor_btn)
+        val c4 : ImageButton = findViewById(R.id.edu_btn)
 
         c1.setOnClickListener {
             changeToDir(this, "Redes y Telecomunicaciones")
@@ -345,29 +356,34 @@ class MainActivity : AppCompatActivity() {
         dialog.dismiss()
     }
     
-    private fun checkPaid() : Boolean{
+    private fun checkPaid(){
         val response = Verify.isPurchased(this, "${applicationContext.packageName}")
-        val res = Verify.Companion.isPurchased(this, "${applicationContext.packageName}")
-        if(checkApklis())
-        else{
-            val diagB = AlertDialog.Builder(this)
-                    .setTitle("AVISO")
-                    .setMessage("Apklis no se encuentra instalado. Por favor descargue e instale la app para evitar errores con la compra.")
-                    .setNeutralButton("Aceptar"){_,_->
-                    }
-            val d = diagB.create()
-            d.show()
+//        val res = Verify.Companion.isPurchased(this, "${applicationContext.packageName}")
+        var user : String?
+        var ispaid : Boolean = false
+        if(!checkApklis()){
+            DialogMaker(1)
         }
-
-        val user = response.second
-        val ispaid = response.first
-//        Toast.makeText(this, ispaid.toString(), Toast.LENGTH_SHORT).show()
-//        if(user.equals(null)|| user.equals(""))
-
-        //@TODO:Wildcard
-        val vips = listOf("MarcosH","marielainfante","marcosh")
-        if(vips.contains(user)) return true
-        return ispaid
+        else {
+            user = response.second
+            if (user.equals(null) || user.equals("")) {
+                DialogMaker(2)
+            }else{
+                ispaid = response.first
+                //@TODO:Wildcard
+                val vips = listOf("marielainfante", "MarcosH", "epsilon", "chopper-kun", "BLNrt", "AntoineAnigma")
+                if (vips.contains(user) || ispaid){
+                    if(firstTime()){
+                        val ed: SharedPreferences.Editor = preferences.edit()
+                        ed.putBoolean("firstime", false)
+                        ed.commit()
+                        DialogMaker(4)
+                    }
+                }else{
+                    DialogMaker(3)
+                }
+            }
+        }
     }
     fun checkApklis(): Boolean{
         val packageManager = applicationContext.packageManager
@@ -413,6 +429,73 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+    fun DialogMaker(case : Int){
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+        var diag : androidx.appcompat.app.AlertDialog
+        when(case){
+            0 -> {
+                dialog.setTitle("Actualizaciones")
+                        .setMessage("No se encontraron actualizacinoes")
+                        .setPositiveButton("Aceptar"){_,_->
+
+                        }
+            }
+            1 -> {
+                var pos : Int = 0
+                dialog.setTitle("Apklis no encontrada")
+                        .setMessage("Apklis no se encuentra instalado. Por favor descargue e instale la app para comprobar la compra")
+                        .setPositiveButton("Cerrar"){_,_->
+                            finishAndRemoveTask()
+                        }
+                        .setIcon(R.drawable.ic_baseline_warning_24)
+                        .setCancelable(false)
+            }
+            2 -> {
+                dialog.setTitle("Usuario no encontrado")
+                        .setMessage("No se ha autenticado en la aplicación de Apklis. Para evitar problemas con la compra y actualizaciones autentíquece lo antes posible")
+                        .setPositiveButton("Abrir APKLIS"){_,_->
+                            val intent = packageManager.getLaunchIntentForPackage("cu.uci.android.apklis")
+                            val chooser = Intent.createChooser(intent, "Launch Apklis")
+                            startActivity(chooser)
+                        }
+                        .setNeutralButton("Cerrar"){_,_->
+                                finishAndRemoveTask()
+                        }
+                        .setIcon(R.drawable.ic_baseline_warning_24)
+                        .setCancelable(false)
+            }
+            3 -> {
+                dialog.setTitle("AVISO")
+                        .setMessage("La aplicación no ha sido comprada! Se cerrará al salir de este mensaje. \nApoye a los desarrolladores con su compra.")
+                        .setNeutralButton("Abrir APKLIS"){_,_->
+                            val intent = packageManager.getLaunchIntentForPackage("cu.uci.android.apklis")
+                            val chooser = Intent.createChooser(intent, "Launch Apklis")
+                            startActivity(chooser)
+                        }
+                        .setPositiveButton("Cerrar"){_,_->
+                            finishAndRemoveTask()
+                        }
+                        .setIcon(R.drawable.ic_baseline_warning_24)
+                        .setCancelable(false)
+            }
+            4 -> {
+                dialog.setTitle("BIENVENIDO")
+                    .setMessage("Gracias por comprar nuestra app. Esperamos la disfrute. \n Ante cualquier problema no dude en contactar con los desarrolladores")
+                    .setPositiveButton("Aceptar", null)
+                    .setCancelable(true)
+            }
+            5 -> {
+
+            }
+        }
+        diag = dialog.create()
+        diag.show()
+    }
+    fun firstTime(): Boolean{
+        val ran : Boolean = preferences.getBoolean("firstime", true)
+        return ran
+    }
+
 
 
     inner class ApklisNotLoggedInException() : Exception() {

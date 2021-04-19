@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
 <!--    MY COLORS-->
+    <color name="light_blue">#80Deea</color>
     <color name="navy_blue">#426082</color>
     <color name="red_soft">#CE6666</color>
     <color name="blue_deep">#4C4CAF</color>
