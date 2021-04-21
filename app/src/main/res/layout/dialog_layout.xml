@@ -6,15 +6,13 @@
     android:layout_height="wrap_content"
     android:paddingStart="20dp"
     android:paddingEnd="20dp"
-    android:background="@drawable/curved_btn2"
     >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/googlesans_bold"
         android:text="Leyenda"
-        android:textSize="40sp"
-        android:layout_marginStart="10sp"
+        android:textSize="40dp"
         android:layout_gravity="center"
         android:textColor="@color/white"
         />
@@ -25,12 +23,13 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/curved_btn5"
         android:layout_gravity="center"
+        android:padding="10dp"
         >
         <ImageView
-            android:layout_width="20sp"
-            android:layout_height="30sp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_cost"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_gravity="center"
             />
         <TextView
@@ -38,15 +37,15 @@
             android:layout_width="wrap_content"
             android:text="Consume"
             android:fontFamily="@font/googlesans_regular"
-            android:textSize="25sp"
-            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             />
         <ImageView
-            android:layout_width="20sp"
-            android:layout_height="30sp"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_nocost"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_gravity="center"
             />
         <TextView
@@ -54,30 +53,30 @@
             android:layout_width="wrap_content"
             android:text="No Consume"
             android:fontFamily="@font/googlesans_regular"
-            android:textSize="25sp"
-            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             />
         <ImageView
-            android:layout_width="30sp"
-            android:layout_height="30sp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_web"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             />
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Abrir en la app"
             android:fontFamily="@font/googlesans_regular"
-            android:textSize="25sp"
-            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             />
         <ImageView
-            android:layout_width="30sp"
-            android:layout_height="30sp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:background="@drawable/ic_send"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:layout_gravity="center"
             />
         <TextView
@@ -85,8 +84,8 @@
             android:layout_width="wrap_content"
             android:text="Abrir en navegador"
             android:fontFamily="@font/googlesans_regular"
-            android:textSize="25sp"
-            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
             android:textColor="@color/white"
             />
 <!--        <ImageView-->
@@ -112,6 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="No volver a mostrar"
+        android:textColor="@color/white"
         android:fontFamily="@font/googlesans_medium"
+        android:backgroundTint="@color/gray_700"
         />
 </LinearLayout>

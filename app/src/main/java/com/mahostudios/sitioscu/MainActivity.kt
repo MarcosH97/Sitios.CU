@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
         MainButtons()
         Arrows()
-        AddQAccess()
+//        AddQAccess()
         SearchBar()
         About()
     }
@@ -165,25 +165,25 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-        arrow1.setOnClickListener {
-            val grid : GridLayout = findViewById(R.id.grid)
-            val zone : RelativeLayout = findViewById(R.id.cardView4)
-            val layoutParams = zone.layoutParams as LinearLayout.LayoutParams
-            if(grid.visibility == View.VISIBLE){
-                grid.visibility = View.GONE
-                arrow1.setBackgroundResource(R.drawable.ic_arrow_down)
-                zone.setBackgroundResource(R.drawable.curved_btn1)
-                layoutParams.setMargins(0,0,0,50)
-                zone.layoutParams = layoutParams
-            }else{
-                TransitionManager.beginDelayedTransition(grid, AutoTransition())
-                grid.visibility = View.VISIBLE
-                arrow1.setBackgroundResource(R.drawable.ic_arrow_up)
-                zone.setBackgroundResource(R.drawable.curved_btn01)
-                layoutParams.setMargins(0,0,0,0)
-                zone.layoutParams = layoutParams
-            }
-        }
+//        arrow1.setOnClickListener {
+//            val grid : GridLayout = findViewById(R.id.grid)
+//            val zone : RelativeLayout = findViewById(R.id.cardView4)
+//            val layoutParams = zone.layoutParams as LinearLayout.LayoutParams
+//            if(grid.visibility == View.VISIBLE){
+//                grid.visibility = View.GONE
+//                arrow1.setBackgroundResource(R.drawable.ic_arrow_down)
+//                zone.setBackgroundResource(R.drawable.curved_btn1)
+//                layoutParams.setMargins(0,0,0,50)
+//                zone.layoutParams = layoutParams
+//            }else{
+//                TransitionManager.beginDelayedTransition(grid, AutoTransition())
+//                grid.visibility = View.VISIBLE
+//                arrow1.setBackgroundResource(R.drawable.ic_arrow_up)
+//                zone.setBackgroundResource(R.drawable.curved_btn01)
+//                layoutParams.setMargins(0,0,0,0)
+//                zone.layoutParams = layoutParams
+//            }
+//        }
         arrow2.setOnClickListener {
             val con : LinearLayout = findViewById(R.id.contact_layout)
             val zone : RelativeLayout = findViewById(R.id.rela3)
@@ -306,25 +306,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Ventana de acceso rapido
-    fun AddQAccess(){
-        val item0 : Button = findViewById(R.id.item0)
-        val item1 : Button = findViewById(R.id.item1)
-        val item2 : Button = findViewById(R.id.item2)
-        val item3 : Button = findViewById(R.id.item3)
-
-        item0.setOnClickListener{
-
-        }
-        item1.setOnClickListener{
-
-        }
-        item2.setOnClickListener{
-
-        }
-        item3.setOnClickListener{
-
-        }
-    }
+//    fun AddQAccess(){
+//        val item0 : Button = findViewById(R.id.item0)
+//        val item1 : Button = findViewById(R.id.item1)
+//        val item2 : Button = findViewById(R.id.item2)
+//        val item3 : Button = findViewById(R.id.item3)
+//
+//        item0.setOnClickListener{
+//
+//        }
+//        item1.setOnClickListener{
+//
+//        }
+//        item2.setOnClickListener{
+//
+//        }
+//        item3.setOnClickListener{
+//
+//        }
+//    }
 
     //Dialogo emergente para la busqueda
     fun showDialog(){
@@ -371,7 +371,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 ispaid = response.first
                 //@TODO:Wildcard
-                val vips = listOf("marielainfante", "MarcosH", "epsilon", "chopper-kun", "BLNrt", "AntoineAnigma")
+                val vips = listOf("marielainfante", "MarcosH", "epsilon", "chopper-kun", "BLNrt", "AntoineAnigma","Winter_Wolf","winter_wolf","Masi","masi")
                 if (vips.contains(user) || ispaid){
                     if(firstTime()){
                         val ed: SharedPreferences.Editor = preferences.edit()
@@ -498,8 +498,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    inner class ApklisNotLoggedInException() : Exception() {
-
-    }
+    inner class ApklisNotLoggedInException : Exception()
 
 }

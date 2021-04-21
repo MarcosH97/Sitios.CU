@@ -4,6 +4,13 @@ plugins {
 }
 
 android {
+    splits{
+        density{
+            enable true
+            include 'ldpi','mdpi','hdpi','xhdpi'
+            exclude 'xxhdpi','xxxhdpi'
+        }
+    }
     signingConfigs {
         release {
             storeFile file('C:\\Users\\Marcos H\\Documents\\ksAndroidStudio.jks')
@@ -12,15 +19,19 @@ android {
             keyPassword 'M3g@hero'
         }
     }
+
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
+
+
 
     defaultConfig {
         applicationId "com.mahostudios.sitioscu"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.9.5"
+        versionCode 7
+        versionName "1.9.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
     }

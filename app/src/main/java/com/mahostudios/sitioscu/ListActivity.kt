@@ -50,21 +50,12 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         FadeIn()
         Start()
         val randomval = Random.nextInt(1, 5)
-        if(randomval == 1 && !settings.getBoolean("rate", false)){
+        if(randomval == 1 && !settings.getBoolean("rate", false) && settings.getBoolean("hide", false)){
             rateApp()
         }
 
     }
 
-    override fun onNightModeChanged(mode: Int) {
-        Start()
-        super.onNightModeChanged(mode)
-    }
-
-    override fun onRestart() {
-        Start()
-        super.onRestart()
-    }
     override fun onBackPressed() {
         val intent = Intent(this@ListActivity, MainActivity::class.java)
         startActivity(intent)
@@ -201,10 +192,13 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         val later : Button = dialog.findViewById(R.id.later_btn)
 
         go.setOnClickListener{
+            val intent = packageManager.getLaunchIntentForPackage("cu.uci.android.apklis")
+            val chooser = Intent.createChooser(intent, "Launch Apklis")
             val ed : SharedPreferences.Editor = settings.edit()
             ed.putBoolean("rate", true)
             ed.commit()
             dialog.dismiss()
+            startActivity(chooser)
         }
         off.setOnClickListener{
             val ed : SharedPreferences.Editor = settings.edit()

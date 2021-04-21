@@ -81,7 +81,7 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
                         prog += 1
                         try {
                             Thread.sleep(15)
-                            progbar.setProgress(prog)
+                            progbar.progress = prog
                             if (prog == 100){
                                 myInterface.onMethodCallback(getLink(itemTitle.text.toString()))
                                 dialog.dismiss()
@@ -131,7 +131,7 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
                         prog += 1
                         try {
                             Thread.sleep(15)
-                            progbar.setProgress(prog)
+                            progbar.progress = prog
                             if (prog == 100){
                                 myInterface.shareLink(getLink(itemTitle.text.toString()))
                                 dialog.dismiss()

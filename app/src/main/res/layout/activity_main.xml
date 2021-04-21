@@ -28,13 +28,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" >
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100sp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginBottom="20dp"
-                    android:src="@drawable/logosites"
+                    android:background="@drawable/ic_head_banner"
                     android:layout_gravity="center"
                     />
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -387,68 +387,6 @@
                         android:layout_centerInParent="true" />
                 </RelativeLayout>
 
-                <GridLayout
-                    android:id="@id/grid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/curved_btn1_2"
-                    android:visibility="visible"
-                    android:columnCount="5"
-                    android:rowCount="2"
-                    android:padding="5dp"
-                    android:elevation="6dp"
-                    android:layout_marginBottom="10dp"
-                    >
-
-                    <Button
-                        android:id="@+id/item0"
-                        android:layout_height="80sp"
-                        android:layout_width="80sp"
-                        android:background="@drawable/curved_button0"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="5sp"
-
-                        android:text="+"
-
-                        />
-                    <Button
-                        android:id="@+id/item1"
-                        android:layout_height="80sp"
-                        android:layout_width="80sp"
-                        android:background="@drawable/curved_button0"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="5sp"
-
-                        android:text="+"
-                        />
-                    <Button
-                        android:id="@+id/item2"
-                        android:layout_height="80sp"
-                        android:layout_width="80sp"
-                        android:background="@drawable/curved_button0"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="5sp"
-
-                        android:text="+"
-                        />
-                    <Button
-                        android:id="@+id/item3"
-                        android:layout_height="80sp"
-                        android:layout_width="80sp"
-                        android:background="@drawable/curved_button0"
-                        android:layout_rowWeight="1"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="5sp"
-
-                        android:text="+"
-                        />
-
-                </GridLayout>
             </LinearLayout>
 
 
