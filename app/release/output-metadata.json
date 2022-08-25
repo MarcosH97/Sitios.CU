@@ -1,66 +1,20 @@
 {
-  "version": 2,
+  "version": 3,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "com.mahostudios.sitioscu",
-  "variantName": "processReleaseResources",
+  "variantName": "release",
   "elements": [
     {
-      "type": "UNIVERSAL",
+      "type": "SINGLE",
       "filters": [],
-      "versionCode": 7,
-      "versionName": "1.9.9",
-      "outputFile": "app-universal-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "hdpi"
-        }
-      ],
-      "versionCode": 7,
-      "versionName": "1.9.9",
-      "outputFile": "app-hdpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "ldpi"
-        }
-      ],
-      "versionCode": 7,
-      "versionName": "1.9.9",
-      "outputFile": "app-ldpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "mdpi"
-        }
-      ],
-      "versionCode": 7,
-      "versionName": "1.9.9",
-      "outputFile": "app-mdpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "xhdpi"
-        }
-      ],
-      "versionCode": 7,
-      "versionName": "1.9.9",
-      "outputFile": "app-xhdpi-release.apk"
+      "attributes": [],
+      "versionCode": 36,
+      "versionName": "2.9.4",
+      "outputFile": "app-release.apk"
     }
-  ]
+  ],
+  "elementType": "File"
 }

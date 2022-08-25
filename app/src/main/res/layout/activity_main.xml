@@ -28,6 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" >
                 <ImageView
+                    android:id="@+id/logo_banner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -36,6 +37,8 @@
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/ic_head_banner"
                     android:layout_gravity="center"
+                    android:longClickable="true"
+                    android:elevation="6dp"
                     />
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -51,301 +54,119 @@
 
                 <RelativeLayout
                     android:id="@+id/rela"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/curved_btn01"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+
                     android:layout_marginStart="10dp"
-                    android:elevation="6dp"
+                    android:layout_marginEnd="10dp"
                     >
+                    <ImageView
+                        android:id="@+id/img0"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_book"
+                        />
                     <TextView
                         android:id="@+id/dira"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:text="Directorio"
-                        android:textSize="35sp"
-                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="35dp"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@id/img0"
                         android:textColor="?attr/colorSecondary"
-                        android:layout_margin="10dp"
+
                         />
                     <ImageButton
                         android:id="@+id/arrow0"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/ic_arrow_up"
                         android:layout_marginEnd="20dp"
-                        android:layout_toRightOf="@id/dira"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true"
                         />
                 </RelativeLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout"
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-
-                    android:elevation="6dp"
-
-                    android:visibility="visible"
-
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-
-                    android:background="@drawable/curved_btn1_2"
+                    android:layout_height="wrap_content"
                     >
 
-                    <ImageButton
-                        android:id="@+id/etecsa_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/ic_netbtn"
-
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
+                    <GridLayout
+                        android:id="@+id/constraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:rowCount="2"
+                        android:columnCount="4"
+                        android:visibility="visible"
+                        android:background="@drawable/curved_btn1_2"
+                        android:layout_marginStart="2dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-
-                        app:layout_constraintHorizontal_weight="1"
-                        app:layout_constraintVertical_weight="1"
-                        app:layout_constraintBottom_toTopOf="@id/infor_btn"
-                        app:layout_constraintEnd_toStartOf="@+id/culture_btn"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
-                    <ImageButton
-                        android:id="@+id/culture_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/ic_culbtn"
-
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="5dp"
-
-                        app:layout_constraintHorizontal_weight="1"
-                        app:layout_constraintVertical_weight="1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/etecsa_btn"
-                        app:layout_constraintBottom_toTopOf="@id/edu_btn"
-                        />
-                    <ImageButton
-                        android:id="@+id/infor_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/ic_infobtn"
-
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginBottom="10dp"
-
-                        app:layout_constraintHorizontal_weight="1"
-                        app:layout_constraintVertical_weight="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/etecsa_btn"
-                        app:layout_constraintEnd_toStartOf="@id/edu_btn"
-                        />
-                    <ImageButton
-                        android:id="@+id/edu_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@drawable/ic_edubtn"
-
-                        android:layout_marginStart="5dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"
+                        android:elevation="6dp"
+                        >
 
-                        app:layout_constraintHorizontal_weight="1"
-                        app:layout_constraintVertical_weight="1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/culture_btn"
-                        app:layout_constraintStart_toEndOf="@id/infor_btn"
-                        />
-                    <!--                    <androidx.cardview.widget.CardView-->
-                    <!--                        android:id="@+id/etecsa_btn"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_height="0dp"-->
-                    <!--                        android:layout_margin="10dp"-->
-                    <!--                        android:clickable="true"-->
-                    <!--                        android:focusable="true"-->
-                    <!--                        android:foreground="?attr/selectableItemBackground"-->
-                    <!--                        app:cardCornerRadius="30dp"-->
-                    <!--                        app:layout_constraintBottom_toTopOf="@+id/infor_btn"-->
-                    <!--                        app:layout_constraintEnd_toStartOf="@+id/culture_btn"-->
-                    <!--                        app:layout_constraintHorizontal_bias="0.5"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-                    <!--                        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:background="@drawable/gradient_bg2">-->
-
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_gravity="center|top"-->
-                    <!--                                android:src="@drawable/ic_baseline_sim_card_24"-->
-                    <!--                                android:layout_marginBottom="20dp"/>-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:layout_width="match_parent"-->
-                    <!--                                android:layout_height="50dp"-->
-                    <!--                                android:layout_gravity="center|bottom"-->
-                    <!--                                android:layout_margin="1dp"-->
-                    <!--                                android:fontFamily="@font/googlesans_medium"-->
-                    <!--                                android:text="Redes y Telecom."-->
-                    <!--                                android:textAlignment="center"-->
-                    <!--                                android:textColor="@color/white"-->
-                    <!--                                android:lines="2"-->
-                    <!--                                android:autoSizeMinTextSize="15sp"-->
-                    <!--                                android:autoSizeMaxTextSize="18sp"-->
-                    <!--                                android:autoSizeTextType="uniform"-->
-                    <!--                                android:autoSizeStepGranularity="2dp"-->
-                    <!--                                android:gravity="center"-->
-                    <!--                                />-->
-                    <!--                        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-                    <!--                    </androidx.cardview.widget.CardView>-->
-
-                    <!--                    <androidx.cardview.widget.CardView-->
-                    <!--                        android:id="@+id/culture_btn"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_height="0dp"-->
-                    <!--                        android:layout_margin="10dp"-->
-                    <!--                        android:clickable="true"-->
-                    <!--                        android:focusable="true"-->
-                    <!--                        android:foreground="?attr/selectableItemBackground"-->
-                    <!--                        app:cardCornerRadius="30dp"-->
-                    <!--                        app:layout_constraintBottom_toTopOf="@+id/edu_btn"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toEndOf="@+id/etecsa_btn"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent">-->
-
-                    <!--                        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:background="@drawable/gradient_bg3"-->
-                    <!--                            >-->
-
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_gravity="center|top"-->
-                    <!--                                android:paddingBottom="25dp"-->
-                    <!--                                android:src="@drawable/ic_dance" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:layout_width="match_parent"-->
-                    <!--                                android:layout_height="50dp"-->
-                    <!--                                android:layout_gravity="center|bottom"-->
-
-                    <!--                                android:fontFamily="@font/googlesans_medium"-->
-                    <!--                                android:text="Culturales y \nEntretenimiento"-->
-                    <!--                                android:textAlignment="center"-->
-                    <!--                                android:textColor="@color/white"-->
-                    <!--                                android:maxLines="2"-->
-                    <!--                                android:gravity="center"-->
-                    <!--                                android:autoSizeMinTextSize="10sp"-->
-                    <!--                                android:autoSizeMaxTextSize="18sp"-->
-                    <!--                                android:autoSizeTextType="uniform"-->
-                    <!--                                android:autoSizeStepGranularity="2dp"-->
-                    <!--                                />-->
-                    <!--                        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-                    <!--                    </androidx.cardview.widget.CardView>-->
-
-                    <!--                    <androidx.cardview.widget.CardView-->
-                    <!--                        android:id="@+id/infor_btn"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_height="0dp"-->
-                    <!--                        android:layout_margin="10dp"-->
-                    <!--                        android:clickable="true"-->
-                    <!--                        android:focusable="true"-->
-                    <!--                        android:foreground="?attr/selectableItemBackground"-->
-                    <!--                        app:cardCornerRadius="30dp"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toStartOf="@+id/edu_btn"-->
-                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                    <!--                        app:layout_constraintTop_toBottomOf="@+id/etecsa_btn">-->
-
-                    <!--                        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:background="@drawable/gradient_bg4"-->
-                    <!--                            android:orientation="vertical">-->
-
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_gravity="center|top"-->
-                    <!--                                android:padding="10dp"-->
-                    <!--                                android:src="@drawable/ic_news" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:layout_width="match_parent"-->
-                    <!--                                android:layout_height="50sp"-->
-                    <!--                                android:layout_gravity="center|bottom"-->
-                    <!--                                android:gravity="center"-->
-                    <!--                                android:fontFamily="@font/googlesans_medium"-->
-                    <!--                                android:text="Informativos"-->
-                    <!--                                android:textAlignment="center"-->
-                    <!--                                android:textColor="@color/white"-->
-                    <!--                                android:lines="1"-->
-                    <!--                                android:autoSizeMinTextSize="15sp"-->
-                    <!--                                android:autoSizeMaxTextSize="22sp"-->
-                    <!--                                android:autoSizeTextType="uniform"-->
-                    <!--                                android:autoSizeStepGranularity="2dp"/>-->
-                    <!--                        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-                    <!--                    </androidx.cardview.widget.CardView>-->
-
-                    <!--                    <androidx.cardview.widget.CardView-->
-                    <!--                        android:id="@+id/edu_btn"-->
-                    <!--                        android:layout_width="0dp"-->
-                    <!--                        android:layout_height="0dp"-->
-                    <!--                        android:layout_margin="10dp"-->
-                    <!--                        android:clickable="true"-->
-                    <!--                        android:focusable="true"-->
-                    <!--                        android:foreground="?attr/selectableItemBackground"-->
-                    <!--                        app:cardCornerRadius="30dp"-->
-                    <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintStart_toEndOf="@+id/infor_btn"-->
-                    <!--                        app:layout_constraintTop_toBottomOf="@+id/culture_btn">-->
-
-                    <!--                        <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:background="@drawable/gradient_bg5"-->
-                    <!--                            android:orientation="vertical">-->
-
-                    <!--                            <ImageView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_gravity="center"-->
-                    <!--                                android:src="@drawable/ic_inv" />-->
-
-                    <!--                            <TextView-->
-                    <!--                                android:layout_width="wrap_content"-->
-                    <!--                                android:layout_height="wrap_content"-->
-                    <!--                                android:layout_gravity="center|bottom"-->
-                    <!--                                android:fontFamily="@font/googlesans_medium"-->
-                    <!--                                android:text="Educativos / \nInvestigativos"-->
-                    <!--                                android:textAlignment="center"-->
-                    <!--                                android:textColor="@color/white"-->
-                    <!--                                android:maxLines="2"-->
-                    <!--                                android:gravity="center"-->
-                    <!--                                android:autoSizeMinTextSize="15sp"-->
-                    <!--                                android:autoSizeMaxTextSize="20sp"-->
-                    <!--                                android:autoSizeTextType="uniform"-->
-                    <!--                                android:autoSizeStepGranularity="2dp"-->
-                    <!--                                />-->
-
-                    <!--                        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
-                    <!--                    </androidx.cardview.widget.CardView>-->
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageButton
+                            android:id="@+id/etecsa_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btnnet"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/culture_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btncul"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/ppm_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btnppm"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/uni_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btnuni"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/infor_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btninfo"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/edu_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btnedu"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/rtv_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btnrtv"
+                            android:layout_margin="5dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/trade_btn"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:background="@drawable/btntrade"
+                            android:layout_margin="5dp"
+                            />
+                    </GridLayout>
+                </HorizontalScrollView>
             </LinearLayout>
 
             <LinearLayout
@@ -389,28 +210,34 @@
 
             </LinearLayout>
 
-
             <RelativeLayout
                 android:id="@+id/rela2"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
 
                 android:visibility="visible"
-                android:background="@drawable/curved_btn1"
+
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:elevation="6dp"
                 >
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/ic_search"
+                    />
 
                 <TextView
                     android:id="@+id/ser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Buscador"
-                    android:textSize="35sp"
-                    android:fontFamily="@font/googlesans_bold"
+                    android:textSize="35dp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/img1"
                     android:textColor="?attr/colorSecondary"
-                    android:layout_margin="10dp"/>
+                    android:layout_centerVertical="true"/>
 
                 <ImageButton
                     android:id="@+id/arrow3"
@@ -418,7 +245,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/ic_arrow_down"
                     android:layout_marginEnd="20dp"
-                    android:layout_toRightOf="@id/ser"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"/>
             </RelativeLayout>
             <LinearLayout
@@ -436,6 +263,65 @@
                 android:elevation="6dp"
                 android:background="@drawable/curved_btn1_2"
                 >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageButton
+                        android:id="@+id/simple_search"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/search_simple_selected"
+                        android:layout_margin="5dp"
+                        android:focusable="true"
+                        />
+                    <ImageButton
+                        android:id="@+id/advanced_search"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/search_advanced"
+                        android:layout_margin="5dp"
+                        android:focusable="true"
+                        />
+                    <Button
+                        android:id="@+id/list_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lista"
+                        android:visibility="gone"
+                        />
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/horizontal_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    >
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/filter_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:singleLine="true"
+                        android:nestedScrollingEnabled="true"
+                        >
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/filter_group2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="false"
+                    android:visibility="gone"
+                    >
+                </com.google.android.material.chip.ChipGroup>
+
                 <SearchView
                     android:id="@+id/searcher"
                     android:layout_width="match_parent"
@@ -473,22 +359,28 @@
                 >
                 <RelativeLayout
                     android:id="@+id/rela3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:elevation="6dp"
-                    android:background="@drawable/curved_btn1"
                     android:layout_marginBottom="10dp"
                     >
-
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_contact"
+                        />
                     <TextView
                         android:id="@+id/con"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Contacto"
-                        android:textSize="35sp"
-                        android:fontFamily="@font/googlesans_bold"
+                        android:textSize="35dp"
+                        android:textStyle="bold"
+                        android:layout_toRightOf="@+id/img3"
                         android:textColor="?attr/colorSecondary"
-                        android:layout_margin="10dp"/>
+                        android:layout_centerVertical="true"
+                        />
 
                     <ImageButton
                         android:id="@+id/arrow2"
@@ -496,7 +388,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/ic_arrow_down"
                         android:layout_marginEnd="20dp"
-                        android:layout_toRightOf="@id/con"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerInParent="true" />
                 </RelativeLayout>
                 <LinearLayout
@@ -505,7 +397,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/curved_btn1_2"
                     android:orientation="vertical"
+
                     android:visibility="gone"
+
                     android:elevation="6dp"
                     android:layout_marginBottom="10dp"
                     >
@@ -517,12 +411,12 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="30dp"
-                        android:fontFamily="@font/googlesans_medium"
-                        android:justificationMode="inter_word"
+
+
                         android:text="Esta herramienta ha sido desarrollada por:"
                         android:textAlignment="center"
                         android:textColor="?attr/colorSecondary"
-                        android:textSize="25sp" />
+                        android:textSize="20sp" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
@@ -548,7 +442,6 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginEnd="30dp"
-                        android:fontFamily="@font/googlesans_medium"
                         android:justificationMode="inter_word"
                         android:text="@string/petition"
                         android:textAlignment="center"
@@ -583,7 +476,7 @@
                             android:layout_height="50sp"
                             android:layout_centerHorizontal="true"
                             android:layout_alignParentStart="true"
-                            android:background="@drawable/ic_telegram_white"
+
                             android:layout_marginStart="10dp"/>
 
                         <ImageButton
@@ -593,6 +486,7 @@
                             android:layout_marginTop="10sp"
                             android:layout_centerHorizontal="true"
                             android:background="@drawable/ic_mailblack"
+                            android:visibility="gone"
                             />
 
                         <ImageButton
@@ -601,16 +495,14 @@
                             android:layout_height="50sp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerHorizontal="true"
-                            android:background="@drawable/ic_telegram_dark"
                             android:layout_marginEnd="10dp"/>
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/googlesans_bold"
+                            android:textStyle="bold"
                             android:text="Telegram Dev"
                             android:textColor="?attr/colorSecondary"
-                            android:textSize="15sp"
+                            android:textSize="17sp"
                             android:autoSizeTextType="uniform"
                             android:autoSizeMaxTextSize="10sp"
                             android:autoSizeMinTextSize="7sp"
@@ -621,10 +513,13 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/googlesans_bold"
+                            android:textStyle="bold"
                             android:text="Correo"
                             android:textColor="?attr/colorSecondary"
                             android:textSize="15sp"
+
+                            android:visibility="gone"
+
                             android:autoSizeTextType="uniform"
                             android:autoSizeMaxTextSize="10sp"
                             android:autoSizeMinTextSize="7sp"
@@ -638,16 +533,26 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/googlesans_bold"
+                            android:textStyle="bold"
                             android:text="Telegram Oficial"
                             android:textColor="?attr/colorSecondary"
-                            android:textSize="15sp"
+                            android:textSize="17sp"
                             android:autoSizeTextType="uniform"
                             android:autoSizeMaxTextSize="10sp"
                             android:autoSizeMinTextSize="7sp"
                             android:layout_below="@id/contact2"
                             android:layout_alignParentEnd="true"
                             android:textAlignment="textEnd"
+                            />
+
+                        <TextView
+                            android:id="@+id/version_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="10dp"
                             />
                     </RelativeLayout>
                 </LinearLayout>

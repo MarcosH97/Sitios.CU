@@ -18,6 +18,7 @@ import android.view.WindowInsetsController
 import android.view.animation.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.w3c.dom.Text
@@ -39,11 +40,12 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
     val PREF_NAME = "hide"
 
 
-    val lista = mutableListOf<Sitio>()
-    lateinit var sitio : Sitio
+    val lista2 = mutableListOf<Sitio2>()
+    lateinit var sitio2 : Sitio2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_list)
         darkmode = getDarkMode()
         lay = findViewById(R.id.linear1)
@@ -53,7 +55,6 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         if(randomval == 1 && !settings.getBoolean("rate", false) && settings.getBoolean("hide", false)){
             rateApp()
         }
-
     }
 
     override fun onBackPressed() {
@@ -65,9 +66,6 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
     fun Start(){
         val bundle = intent.extras
         var cat : CharSequence? = ""
-
-        top_banner = findViewById(R.id.banner)
-
 
         try {
             cat = bundle!!.getCharSequence("category")
@@ -87,39 +85,59 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
             showLegend0()
 
         banner_title = findViewById(R.id.banner_title)
-
-        when(cat.toString()){
-            "Redes y Telecomunicaciones" ->{
-                s = "ETECSA"
-                banner_title.text = "Redes y \nTelecomunicaicones"
-                top_banner.setBackgroundResource(R.drawable.ic_netbanner)
-                if(darkmode)lay.setBackgroundResource(R.drawable.netbgblack)
-                else lay.setBackgroundResource(R.drawable.netbackwhite)
-
+        val cardView : CardView = findViewById(R.id.banner_top)
+        top_banner = findViewById(R.id.banner)
+            when (cat.toString()) {
+                "Redes y Telecomunicaciones" -> {
+                    s = "ETECSA"
+                    top_banner.setBackgroundResource(R.drawable.ban_net)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.netbgblack)
+                    else lay.setBackgroundResource(R.drawable.netbackwhite)
+                }
+                "Culturales y Entretenimiento" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_cult)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.cultbgblack)
+                    else lay.setBackgroundResource(R.drawable.cultbglight)
+                }
+                "Informativos" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_info)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.infobgblack)
+                    else lay.setBackgroundResource(R.drawable.infobglight)
+                }
+                "Investigativos/Educativos" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_edu)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.edubgblack)
+                    else lay.setBackgroundResource(R.drawable.edubglight)
+                }
+                "Periódicos y Revistas" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_ppm)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.ppmblack)
+                    else lay.setBackgroundResource(R.drawable.ppmlight)
+                }
+                "Radio y Televisión" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_rtv)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.rtvblack)
+                    else lay.setBackgroundResource(R.drawable.rtvlight)
+                }
+                "Universidades" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_uni)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.uniblack)
+                    else lay.setBackgroundResource(R.drawable.unilight)
+                }
+                "Comercio Electrónico" -> {
+                    s = cat.toString()
+                    top_banner.setBackgroundResource(R.drawable.ban_trade)
+                    if (darkmode) lay.setBackgroundResource(R.drawable.tradeblack)
+                    else lay.setBackgroundResource(R.drawable.tradelight)
+                }
+                else -> s = ""
             }
-            "Culturales_Entretenimiento" ->{
-                s = cat.toString()
-                banner_title.text = "Culturales y \nEntretenimiento"
-                top_banner.setBackgroundResource(R.drawable.ic_cultbanner)
-                if(darkmode)lay.setBackgroundResource(R.drawable.cultbgblack)
-                else lay.setBackgroundResource(R.drawable.cultbglight)
-            }
-            "Informativos" ->{
-                s = cat.toString()
-                banner_title.text = "Informativos"
-                top_banner.setBackgroundResource(R.drawable.ic_infobanner)
-                if(darkmode)lay.setBackgroundResource(R.drawable.infobgblack)
-                else lay.setBackgroundResource(R.drawable.infobglight)
-            }
-            "Investigativos_Educativos" ->{
-                s = cat.toString()
-                banner_title.text = "Investigativos /\nEducativos"
-                top_banner.setBackgroundResource(R.drawable.ic_edubanner)
-                if(darkmode)lay.setBackgroundResource(R.drawable.edubgblack)
-                else lay.setBackgroundResource(R.drawable.edubglight)
-            }
-            else -> s = ""
-        }
         setupDB(s)
         recyclerView = findViewById(R.id.recycler_v)
         setRecycler(s)
@@ -134,32 +152,31 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         val controller = LayoutAnimationController(set, 0.2f)
         lay.layoutAnimation = controller
     }
-    fun FadeInScale(){
 
-//        val animation : LayoutAnimationController = AnimationUtils.loadLayoutAnimation(this, R.anim.)
+    fun getList() : List<Sitio2>{
+        lista2.sortBy { it.name }
+        return lista2
     }
 
-    fun getList() : List<Sitio>{
-        return lista
-    }
-
-    fun setupDB(table : String){
+    fun setupDB(cat: String){
         val dbHelper : DBHelper = DBHelper(this)
-        var data = dbHelper.Read(table)
+        var data = dbHelper.Read("site")
         if(data.moveToFirst()){
             do{
-                var id = data.getString(data.getColumnIndex("id")).toInt()
-                var cost = data.getString(data.getColumnIndex("cost")).toInt()
-                var name = data.getString(data.getColumnIndex("name"))
-                var url = data.getString(data.getColumnIndex("url"))
-                var desc = data.getString(data.getColumnIndex("desc"))
-                var down = data.getString(data.getColumnIndex("down")).toInt()
-                sitio = Sitio(id,cost,name,url,desc,down)
-                lista.add(sitio)
+                if(data.getString(data.getColumnIndex("category")).equals(cat)){
+                    var id = data.getString(data.getColumnIndex("id")).toInt()
+                    var name = data.getString(data.getColumnIndex("name"))
+                    var url = data.getString(data.getColumnIndex("url"))
+                    var desc = data.getString(data.getColumnIndex("description"))
+                    var cost = data.getString(data.getColumnIndex("cost")).toInt()
+                    sitio2 = Sitio2(id, null,cost, name, url, desc, 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+                    lista2.add(sitio2)
+                }else if(data.getString(data.getColumnIndex("category")).equals(cat)){
+
+                }
             }while (data.moveToNext())
         }
     }
-
     fun setRecycler(s : String){
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -185,32 +202,20 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         }
     }
     fun rateApp(){
-        dialog.setContentView(R.layout.rate_dialog)
-        dialog.show()
-        val go : Button = dialog.findViewById(R.id.go_btn)
-        val off : Button = dialog.findViewById(R.id.off_btn)
-        val later : Button = dialog.findViewById(R.id.later_btn)
+        val diag = AlertDialog.Builder(this)
+            .setTitle("Hola!")
+            .setMessage("¿Está disfrutando nuestra app? \nSería de gran apoyo su opinión y solo toma un momento")
+            .setPositiveButton("¡Sí!"){_,_->
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.apklis.cu/application/com.mahostudios.sitioscu"))
+                startActivity(intent)
+            }
+            .setNeutralButton("Más tarde"){_,_->
 
-        go.setOnClickListener{
-            val intent = packageManager.getLaunchIntentForPackage("cu.uci.android.apklis")
-            val chooser = Intent.createChooser(intent, "Launch Apklis")
-            val ed : SharedPreferences.Editor = settings.edit()
-            ed.putBoolean("rate", true)
-            ed.commit()
-            dialog.dismiss()
-            startActivity(chooser)
-        }
-        off.setOnClickListener{
-            val ed : SharedPreferences.Editor = settings.edit()
-            ed.putBoolean("rate", true)
-            ed.commit()
-            dialog.dismiss()
-        }
-        later.setOnClickListener{
-            dialog.dismiss()
-        }
+            }
+                .setCancelable(false)
+        val d = diag.create()
+        d.show()
     }
-
     override fun onMethodCallback(url: String) {
         val bundle = Bundle()
         val intent = Intent(this@ListActivity, WebViewActivity::class.java)
@@ -218,12 +223,10 @@ class ListActivity : AppCompatActivity(), RecyclerAdapter.MyInterface {
         intent.putExtras(bundle)
         startActivity(intent)
     }
-
     override fun shareLink(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
     }
-
     override fun copyToClipboard(url: String) {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         Toast.makeText(this, "Dirección copiada", Toast.LENGTH_SHORT).show()

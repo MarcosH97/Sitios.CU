@@ -1,0 +1,43 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <PreferenceCategory
+        app:title="Tema"
+        app:icon="@drawable/ic_theme">
+
+        <ListPreference
+            app:defaultValue="AUTO"
+            app:entries="@array/theme_names"
+            app:entryValues="@array/themes"
+            app:key="theme"
+            app:title="Cambiar tema"
+            app:summary="Alterna entre el modo claro y el modo oscuro de la app."
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Interfaz"
+        app:icon="@drawable/ic_min_ui"
+        >
+        <SwitchPreferenceCompat
+            app:key="minimal_ui"
+            app:title="Reducida"
+            app:summary="Recomendada para dispositivos de bajo rendimiento. (Android 5.0+)"
+            app:defaultValue="0"
+            />
+        <SwitchPreferenceCompat
+            app:key="list_ui"
+            app:title="Modo Lista"
+            app:summary="Mostrar los botones de la interfaz en forma de lista"
+            app:defaultValue="0"
+            />
+
+<!--        <SwitchPreferenceCompat-->
+<!--            app:dependency="sync"-->
+<!--            app:key="attachment"-->
+<!--            app:summaryOff="@string/attachment_summary_off"-->
+<!--            app:summaryOn="@string/attachment_summary_on"-->
+<!--            app:title="@string/attachment_title" />-->
+    </PreferenceCategory>
+
+</PreferenceScreen>

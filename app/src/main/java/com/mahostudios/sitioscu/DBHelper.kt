@@ -13,8 +13,8 @@ import java.nio.Buffer
 class DBHelper(val context: Context)
 {
     companion object{
-        val DB_VERSION : Int = 8
-        val DB_NAME : String = "directory0.db"
+        val DB_VERSION : Int = 27
+        val DB_NAME : String = "directory0l.db"
         var i: Int = 0
     }
     val database : SQLiteDatabase

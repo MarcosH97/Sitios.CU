@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectionActivity"
+    android:orientation="vertical"
+    >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bienvenido!"
+            android:textSize="50sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            style="@style/White_Theme"
+            />
+        <TextView
+            android:layout_width="300sp"
+            android:layout_height="wrap_content"
+            android:text="Seleccione el tipo de vista"
+            android:textSize="26sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            style="@style/White_Theme"
+            />
+        <RadioGroup
+            android:id="@+id/rgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/White_Theme"
+            >
+        <RadioButton
+            android:id="@+id/radio_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Simplificada"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            style="@style/White_Theme"
+            />
+        <RadioButton
+            android:id="@+id/radio_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completa"
+            android:textSize="25sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            style="@style/White_Theme"
+        />
+        </RadioGroup>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recordar selección"
+            android:textSize="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            style="@style/White_Theme"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+                <Button
+                    android:id="@+id/cont_btn"
+                    style="@style/White_Theme_button"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="50dp"
+                    android:text="CONTINUAR"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.125" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

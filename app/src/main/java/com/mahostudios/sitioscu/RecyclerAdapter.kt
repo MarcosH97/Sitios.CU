@@ -23,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import kotlin.coroutines.coroutineContext
 
-class RecyclerAdapter(private var context: Context, private var sites: List<Sitio>, private var cat: String):
+class RecyclerAdapter(private var context: Context, private var sites: List<Sitio2>, private var cat: String):
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(item : View):RecyclerView.ViewHolder(item){
@@ -46,7 +46,6 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
             barbtn.setOnClickListener{v :View ->
                 if(itemDesc.visibility == View.VISIBLE){
                     itemDesc.visibility = View.GONE
-
                     barbtn.text = "mostrar más"
                 }else{
                     TransitionManager.beginDelayedTransition(cardView, AutoTransition())
@@ -55,19 +54,6 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
                 }
             }
             webtn.setOnClickListener{v : View ->
-//                val dialog = AlertDialog.Builder(context)
-//                dialog.setTitle("Aviso")
-//                dialog.setMessage("Desea abrir esta página?")
-//                dialog.setCancelable(false)
-//                dialog.setPositiveButton("Si"){_,_->
-//                    myInterface.onMethodCallback(getLink(itemTitle.text.toString()))
-//                }
-//                dialog.setNegativeButton("No"){_,_->
-//                }
-//                val diag = dialog.create()
-//                diag.show()
-//                diag.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.DKGRAY)
-//                diag.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.DKGRAY)
                 val dialog = Dialog(context)
                 dialog.setContentView(R.layout.loading_dialog)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -106,21 +92,10 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
                     myInterface.copyToClipboard(getLink(itemTitle.text.toString()))
             }
             sharebtn.setOnClickListener{
-//                val dialog = AlertDialog.Builder(context)
-//                .setTitle("Aviso")
-//                .setMessage("Desea abrir la página en otro navegador?")
-//                .setCancelable(false)
-//                .setPositiveButton("Si"){_,_->
-//                    myInterface.shareLink(getLink(itemTitle.text.toString()))
-//                }
-//                dialog.setNegativeButton("No"){_,_->
-//
-//                }
-//                val diag = dialog.create()
-//                diag.show()
                 val dialog = Dialog(context)
                 dialog.setContentView(R.layout.loading_dialog)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.setCancelable(false)
                 val showbtn : ImageButton = dialog.findViewById(R.id.cancel_btn)
                 val progbar : ProgressBar = dialog.findViewById(R.id.progress_circ)
                 var prog = 0
@@ -159,59 +134,100 @@ class RecyclerAdapter(private var context: Context, private var sites: List<Siti
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.setIsRecyclable(false)
-        when(cat){
-            "ETECSA" ->{
-                holder.img.setBackgroundResource(R.drawable.gradient_bg2)
+
+            when (cat) {
+                "ETECSA" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg2)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.navy_blue)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.navy_blue))
+                    }
+                }
+                "Culturales y Entretenimiento" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg3)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.magenta_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.magenta_600))
+                    }
+                }
+                "Informativos" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg4)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.orange_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.orange_600))
+                    }
+                }
+                "Investigativos/Educativos" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg5)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.green_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.green_600))
+                    }
+                }
+                "Periódicos y Revistas" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg7)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.yellow_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.yellow_600))
+                    }
+                }
+                "Radio y Televisión" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg6)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.red_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.red_600))
+                    }
+                }
+                "Universidades" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg8)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.cyan_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.cyan_600))
+                    }
+                }
+                "Comercio Electrónico" -> {
+                    if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.M) {
+                        holder.img.setBackgroundResource(R.drawable.gradient_bg9)
+                    }else if(android.os.Build.VERSION.SDK_INT==android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        holder.img.setBackgroundResource(R.color.coldgray_600)
+                    }else {
+                        holder.cardView.setCardBackgroundColor(context.resources.getColor(R.color.coldgray_600))
+                    }
+                }
             }
-            "Culturales_Entretenimiento" ->{
-                holder.img.setBackgroundResource(R.drawable.gradient_bg3)
-            }
-            "Informativos" ->{
-                holder.img.setBackgroundResource(R.drawable.gradient_bg4)
-            }
-            "Investigativos_Educativos" ->{
-                holder.img.setBackgroundResource(R.drawable.gradient_bg5)
-            }
-        }
-        val site : Sitio = sites.get(position)
-        if(site.cost == 0)
+        val site: Sitio2 = sites.get(position)
+        if (site.cost == 0)
             holder.costimg.setBackgroundResource(R.drawable.ic_nocost)
         holder.itemTitle.text = site.name
         holder.itemDesc.text = site.description
         holder.down.visibility = View.GONE
-//        if(site.down == 1){
-//            holder.down.visibility = View.VISIBLE
-//        }
     }
     override fun getItemCount(): Int {
         return sites.size
     }
 
     fun getLink(name:String):String{
-        var link : String = ""
+        var link = ""
         for(site in sites){
             if(site.name.equals(name))
                 link = site.url
         }
         return link
     }
-    fun dialogBuilder(s : String): Boolean{
-        var b = false
-        val dialog = AlertDialog.Builder(context)
-        dialog.setTitle("Aviso")
-        dialog.setMessage(s)
-        dialog.setCancelable(false)
-        dialog.setPositiveButton("Si"){_,_->
-
-        }
-        dialog.setNegativeButton("No"){_,_->
-
-        }
-        val diag = dialog.create()
-        diag.show()
-        return b
-    }
-
     interface MyInterface{
         fun onMethodCallback(url: String)
         fun shareLink(url: String)

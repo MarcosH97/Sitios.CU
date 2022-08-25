@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sitios.CU</string>
+    <string name="app_name">Sitios Web.CU</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -15,4 +15,121 @@
         <item>Investigativos / \nEducativos</item>
     </array>
     <string name="test">"Redes y \n Telecomunicaicones"</string>
+
+    <array name="cats">
+        <item>descripción</item>
+        <item>comunicaciones</item>
+        <item>culturales</item>
+        <item>entretenimiento</item>
+        <item>radio</item>
+        <item>tv</item>
+        <item>revista</item>
+        <item>periodico</item>
+        <item>medio ambiente</item>
+        <item>salud</item>
+        <item>universidades</item>
+        <item>ministerios</item>
+        <item>comercio</item>
+        <item>informativos</item>
+        <item>provinciales</item>
+        <item>educativos</item>
+        <item>libre consumo</item>
+    </array>
+
+    <string name="changelog">
+<!--         <li>Actualización Semanal</li>-->
+        <!--        \n-->
+        <!--        \n-->
+<!--        <li>Nueva Actualización!!</li>-->
+<!--        \n-->
+<!--        \n-->
+<!--        <li>Agregada función de elegir la interfaz(Beta)</li>-->
+<!--        \n-->
+<!--        \n-->
+        <!--        <li>Accesos Rápidos mejorados!!! Agregados los nombres de los sitios seleccionados.</li>-->
+        <!--        \n-->
+        <!--        \n-->
+        <li>Arreglos a la base de datos realizado</li>
+        \n
+        \n
+        <!--        <li>Ya puede marcar sus sitios web favoritos con la función de Accesos Rápidos! Para sustituir un sitio por otro deje presionado el que desea sustituir y saldrá la lista.</li>-->
+        <!--        \n-->
+        <!--        \n-->
+        <!--        <li>Sitios nuevos agregados</li>-->
+        <!--        \n-->
+        <!--        \n-->
+<!--        <li>Rediseño de la interfaz y algunos iconos para futuras mejoras.</li>-->
+<!--        \n-->
+<!--        \n-->
+        <!--        <li>Próximamente nuevas secciones y función nueva. Esté al día con todas las actualizaciones en el Grupo de <b>Maho-Studios</b> en Telegram</li>-->
+        <!--        \n-->
+        <!--        \n-->
+        <!--        <li>Mejoras visuales realizadas</li>-->
+        <!--        \n-->
+        <!--        \n-->
+        <li>Pequeños errores arreglados</li>
+        \n
+        \n
+        <!--        <li>Ya disponible: <b>Sitios Libres Lite</b> para dispositivos con bajas prestaciones y/o versiones de Android</li>-->
+
+
+    </string>
+    <string name="agradecimientos">
+        <li>MCRR</li>\n
+        <li>Yukkine</li>\n
+        <li>Holloknights</li>\n
+        <li>Chopper-Kun</li>\n
+        <li>Amanda</li>\n
+        <li>AntoineAnigma</li>\n
+        <li>WonK</li>\n
+        <li>C354R</li>\n
+        <li>ebcuba</li>\n
+        <li>Winter_Wolf</li>
+        <li>Saitama</li>\n
+        <li>Dani</li>\n
+        <li>La Familia</li>\n
+        <li>Mariela Infante</li>\n
+        <li>Sadiel Álvarez</li>\n
+        <li>Angel Lopez</li>\n
+        <li>hakou d</li>\n
+        <li>Alberto Luís Aldereguía Díaz</li>\n
+        <li>Orestes González</li>\n
+        <li>Angel Raidel López Ortega</li>\n
+        <li>Ernesto Chiong</li>\n
+        <li>Keny Díaz</li>\n
+        <li>Frank Pérez</li>\n
+        <li>Juan Antonio Acea Perez</li>\n
+        <li>Pablo Manuel Hernandez Rodriguez</li>\n
+        <li>Eugenio Antonio Almaguer</li>\n
+        <li>Manuel Alejandro Torres Argudín</li>\n
+
+        \n
+        <li>Muchas gracias a todos!</li>
+    </string>
+    <array name="themes">
+        <item>WHITE</item>
+        <item>BLACK</item>
+        <item>AUTO</item>
+    </array>
+    <array name="theme_names">
+        <item>Claro</item>
+        <item>Oscuro</item>
+        <item>Automático</item>
+    </array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

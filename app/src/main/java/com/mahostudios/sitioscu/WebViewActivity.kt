@@ -6,10 +6,12 @@ import android.app.DownloadManager
 import android.app.backup.BackupAgent
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.net.http.SslError
 import android.os.*
 import androidx.appcompat.app.AppCompatActivity
 import android.transition.AutoTransition
@@ -17,10 +19,7 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.Window
 import android.webkit.*
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -42,6 +41,7 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.requestFeature(Window.FEATURE_PROGRESS)
         setContentView(R.layout.activity_web_view)
+
         val bundle = intent.extras
         val texturl: TextView = findViewById(R.id.text_url)
         swipeRefreshLayout = findViewById(R.id.swipe_refresh)
@@ -68,36 +68,11 @@ class WebViewActivity : AppCompatActivity() {
             }
             webView.reload()
         }
-
-    }
-
-    fun getFileType(url: String): String? {
-        val contentResolver: ContentResolver = contentResolver
-        val mimeTypeMap = MimeTypeMap.getSingleton()
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(Uri.parse(url)))
-    }
-
-    fun downloadFile(filename: String, url: String, userAgent: String) {
-        try {
-            val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-            val request = DownloadManager.Request(Uri.parse(url))
-            val cookie = CookieManager.getInstance().getCookie(url)
-            request.setTitle(filename)
-                    .setDescription("being downloaded")
-                    .addRequestHeader("cookie", cookie)
-                    .addRequestHeader("User-Agent", userAgent)
-                    .setMimeType(getFileType(url))
-                    .setAllowedOverRoaming(true)
-                    .setAllowedOverMetered(true)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-            downloadManager.enqueue(request)
-            sURL = ""
-            sURL = ""
-            sFileName = ""
-            Toast.makeText(applicationContext, "Descargando", Toast.LENGTH_LONG).show()
-        } catch (e: Exception) {
-            Toast.makeText(applicationContext, "Error $e", Toast.LENGTH_LONG).show()
+        val home : ImageButton = findViewById(R.id.home_btn)
+        home.setOnClickListener{
+            val intent = Intent(this@WebViewActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }
@@ -108,14 +83,30 @@ class WebViewActivity : AppCompatActivity() {
                 view?.loadUrl(url)
                 return true
             }
-
+            override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
+                handler?.proceed()
+            }
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 swipeRefreshLayout.isRefreshing = false
             }
         }
-        webView.loadUrl(url)
-        webView.settings.setSupportZoom(true)
-        webView.settings.builtInZoomControls = true
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                super.onProgressChanged(view, newProgress)
+                progressbar.progress = newProgress
+                if (progressbar.progress == 100) {
+                    TransitionManager.beginDelayedTransition(constlay, AutoTransition())
+                    progressbar.visibility = View.GONE
+                }
+            }
+            override fun onReceivedTitle(view: WebView?, title: String?) {
+                super.onReceivedTitle(view, title)
+            }
+            override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {
+                favicon.setImageBitmap(icon)
+                super.onReceivedIcon(view, icon)
+            }
+        }
         webView.settings.javaScriptEnabled = true
         webView.settings.javaScriptCanOpenWindowsAutomatically = true
         webView.settings.setSupportMultipleWindows(false)
@@ -126,51 +117,32 @@ class WebViewActivity : AppCompatActivity() {
         webView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
         webView.settings.allowUniversalAccessFromFileURLs = true
         webView.settings.domStorageEnabled = true
+        webView.settings.builtInZoomControls = true
+        webView.settings.displayZoomControls = false
+
+
+        webView.loadUrl(url)
+        webView.settings.javaScriptEnabled = true
 //        favicon.setImageBitmap(webView.favicon)
-        ProgressBar()
-        webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
 
-            val filename: String = URLUtil.guessFileName(url, contentDisposition, getFileType(url))
-            sURL = url
-            sFileName = filename
-            sUserAgent = userAgent
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    downloadFile(filename, url, userAgent)
-                } else {
-                    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1001)
-                }
-
-            } else {
-                downloadFile(filename, url, userAgent)
-            }
-        }
-    }
-
-    fun ProgressBar() {
-        webView.webChromeClient = object : WebChromeClient() {
-            override fun onProgressChanged(view: WebView?, newProgress: Int) {
-                super.onProgressChanged(view, newProgress)
-                progressbar.progress = newProgress
-                if (progressbar.progress == 100) {
-                    TransitionManager.beginDelayedTransition(constlay, AutoTransition())
-                    progressbar.visibility = View.GONE
-                }
-
-            }
-
-            override fun onReceivedTitle(view: WebView?, title: String?) {
-                super.onReceivedTitle(view, title)
-
-            }
-
-            override fun onReceivedIcon(view: WebView?, icon: Bitmap?) {
-                favicon.setImageBitmap(icon)
-                super.onReceivedIcon(view, icon)
-            }
-        }
-
+//        webView.setDownloadListener { url, userAgent, contentDisposition, mimeType, contentLength ->
+//
+//            val filename: String = URLUtil.guessFileName(url, contentDisposition, getFileType(url))
+//            sURL = url
+//            sFileName = filename
+//            sUserAgent = userAgent
+//
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+//                    downloadFile(filename, url, userAgent)
+//                } else {
+//                    ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), 1001)
+//                }
+//
+//            } else {
+//                downloadFile(filename, url, userAgent)
+//            }
+//        }
     }
 
     fun isNetworkAvaliable(context: Context): Boolean {
@@ -186,15 +158,40 @@ class WebViewActivity : AppCompatActivity() {
             super.onBackPressed()
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1001) {
-            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                if (!sURL.equals("") && !sUserAgent.equals("") && !sFileName.equals(""))
-                    downloadFile(sFileName, sURL, sUserAgent)
-            }
-        }
-    }
+//    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if (requestCode == 1001) {
+//            if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+//                if (!sURL.equals("") && !sUserAgent.equals("") && !sFileName.equals(""))
+//                    downloadFile(sFileName, sURL, sUserAgent)
+//            }
+//        }
+//    }
+//    fun downloadFile(filename: String, url: String, userAgent: String) {
+//        try {
+//            val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
+//            val request = DownloadManager.Request(Uri.parse(url))
+//            val cookie = CookieManager.getInstance().getCookie(url)
+//            request.setTitle(filename)
+//                    .setDescription("being downloaded")
+//                    .addRequestHeader("cookie", cookie)
+//                    .addRequestHeader("User-Agent", userAgent)
+//                    .setMimeType(getFileType(url))
+//                    .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
+//                    .setAllowedOverRoaming(true)
+//                    .setAllowedOverMetered(true)
+//                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+//                    .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//                    .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "${System.currentTimeMillis()}")
+//                    .allowScanningByMediaScanner()
+//
+//            downloadManager.enqueue(request)
+//            Toast.makeText(applicationContext, "Descargando", Toast.LENGTH_LONG).show()
+//        } catch (e: Exception) {
+//            Toast.makeText(applicationContext, "Error $e", Toast.LENGTH_LONG).show()
+//        }
+//
+//    }
 }
 
 

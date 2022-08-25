@@ -58,7 +58,7 @@
                 android:autoSizeMinTextSize="20sp"
                 android:autoSizeMaxTextSize="40sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/googlesans_bold"
+                android:textStyle="bold"
                 android:clickable="true"
                 />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

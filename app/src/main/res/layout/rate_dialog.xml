@@ -1,83 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/texta"
         android:layout_width="150dp"
         android:layout_height="130dp"
-        android:fontFamily="@font/googlesans_bold"
-        android:text="¿Está disfrutando nuestra app? \nSería de gran apoyo su opinión y solo toma un momento"
+        android:layout_margin="10dp"
         android:autoSizeMaxTextSize="20dp"
         android:autoSizeMinTextSize="14dp"
-        android:autoSizeTextType="uniform"
         android:autoSizeStepGranularity="2dp"
-        android:layout_margin="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/googlesans_bold"
+        android:text="¿Está disfrutando nuestra app? \nSería de gran apoyo su opinión y solo toma un momento"
+
         app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:theme="@style/Widget.AppCompat.RatingBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+<!--    <RatingBar-->
+<!--        android:id="@+id/ratingBar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="0.5"-->
+<!--        android:theme="@style/Widget.AppCompat.RatingBar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />-->
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="end"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/texta"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ratingBar"
-        >
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/texta"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_gravity="center"
             android:id="@+id/go_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Abrir Apklis"
-            android:textSize="12dp"
-            android:background="@color/transparent"
-            android:textColor="@color/navy_blue"/>
-
-        <Button
-            android:id="@+id/off_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="No volver a mostar"
-            android:textSize="12dp"
-            android:textColor="@color/navy_blue"
-            android:background="@color/transparent"/>
-
-        <Button
             android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="Abrir Apklis"
+            android:textColor="@color/navy_blue"
+            android:textSize="12dp" />
+
+        <Button
             android:id="@+id/later_btn"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="Más tarde"
-            android:textSize="12dp"
             android:background="@color/transparent"
+            android:text="Más tarde"
             android:textColor="@color/navy_blue"
-            />
+            android:textSize="12dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
